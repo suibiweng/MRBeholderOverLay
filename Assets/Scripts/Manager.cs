@@ -7,6 +7,11 @@ using TMPro;
 public class Manager : MonoBehaviour
 {
 
+    public RadioModule radioModule;
+    public GearControlModule gearControlModule;
+    public AirconditionModule airconditionModule;
+
+
     public TMP_Text oscprintout;
 
     public OSC osc;
@@ -39,31 +44,40 @@ void reciveAllmessage(OscMessage message)
         case "radio-onoff":
             int radioOnOff = Convert.ToInt32(value);
             logText = $"Radio On/Off: {radioOnOff}";
+
+
+                radioModule.setOnof(radioOnOff);
             break;
 
         case "radio-tuner":
             float radioTuner = Convert.ToSingle(value);
             logText = $"Radio Tuner: {radioTuner}";
+            //radioModule.changeChannel(radioTuner);
             break;
 
         case "radio-volume":
             float radioVolume = Convert.ToSingle(value);
             logText = $"Radio Volume: {radioVolume}";
+           // radioModule.setOnof(radioVolume);
+
             break;
 
         case "ac-increase":
             int acIncrease = Convert.ToInt32(value);
             logText = $"AC Increase: {acIncrease}";
+            airconditionModule.changeTemp(acIncrease);
             break;
 
         case "ac-decrease":
             int acDecrease = Convert.ToInt32(value);
             logText = $"AC Decrease: {acDecrease}";
+             airconditionModule.changeTemp(acDecrease);
             break;
 
         case "ac-fan":
             float acFan = Convert.ToSingle(value);
             logText = $"AC Fan Speed: {acFan}";
+              //  airconditionModule.changeWind(acFan);
             break;
 
         case "gear-start":
@@ -74,6 +88,7 @@ void reciveAllmessage(OscMessage message)
         case "gear-stick":
             float gearStick = Convert.ToSingle(value);
             logText = $"Gear Stick Position: {gearStick}";
+                gearControlModule.GearSwitch(gearStick);
             break;
 
         default:
