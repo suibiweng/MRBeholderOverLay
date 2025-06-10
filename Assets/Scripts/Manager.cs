@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using TMPro;
 
 public class Manager : MonoBehaviour
@@ -16,16 +17,72 @@ public class Manager : MonoBehaviour
     }
 
 
+ // Assign this in the Inspector
+
 void reciveAllmessage(OscMessage message)
 {
-    string output = "";
+    string address = message.address.TrimStart('/');
 
-    foreach (var val in message.values)
+    if (message.values.Count == 0)
     {
-        output += val.ToString() + " ";
+        string warning = $"⚠️ OSC message at {address} has no values.";
+        Debug.LogWarning(warning);
+        oscprintout.text = warning;
+        return;
     }
 
-    oscprintout.text = output.Trim(); // Trim to remove trailing space
+    object value = message.values[0];
+    string logText = "";
+
+    switch (address)
+    {
+        case "radio-onoff":
+            int radioOnOff = Convert.ToInt32(value);
+            logText = $"Radio On/Off: {radioOnOff}";
+            break;
+
+        case "radio-tuner":
+            float radioTuner = Convert.ToSingle(value);
+            logText = $"Radio Tuner: {radioTuner}";
+            break;
+
+        case "radio-volume":
+            float radioVolume = Convert.ToSingle(value);
+            logText = $"Radio Volume: {radioVolume}";
+            break;
+
+        case "ac-increase":
+            int acIncrease = Convert.ToInt32(value);
+            logText = $"AC Increase: {acIncrease}";
+            break;
+
+        case "ac-decrease":
+            int acDecrease = Convert.ToInt32(value);
+            logText = $"AC Decrease: {acDecrease}";
+            break;
+
+        case "ac-fan":
+            float acFan = Convert.ToSingle(value);
+            logText = $"AC Fan Speed: {acFan}";
+            break;
+
+        case "gear-start":
+            int gearStart = Convert.ToInt32(value);
+            logText = $"Gear Start: {gearStart}";
+            break;
+
+        case "gear-stick":
+            float gearStick = Convert.ToSingle(value);
+            logText = $"Gear Stick Position: {gearStick}";
+            break;
+
+        default:
+            logText = $"⚠️ Unknown OSC address: {address}";
+            break;
+    }
+
+    Debug.Log(logText);
+    oscprintout.text = logText;
 }
 
     // Update is called once per frame
