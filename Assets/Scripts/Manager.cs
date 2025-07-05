@@ -3,13 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using TMPro;
+using Oculus.Interaction.Locomotion;
+using Oculus.Interaction;
+
 
 public class Manager : MonoBehaviour
 {
 
+
+    public bool mockupOn = true;
+     public MeshRenderer mockupSkin;
+
+    public Grabbable grabbable;
+
     public RadioModule radioModule;
     public GearControlModule gearControlModule;
     public AirconditionModule airconditionModule;
+
+    public GameObject grabObj;
+
+   
 
 
     public TMP_Text oscprintout;
@@ -22,9 +35,28 @@ public class Manager : MonoBehaviour
     }
 
 
+
+
+
+
+    public void turnMockup()
+    {
+        mockupOn = !mockupOn;
+
+
+        mockupSkin.enabled = mockupOn;
+        grabbable.enabled = mockupOn;
+        grabObj.SetActive(mockupOn);
+
+
+
+
+    }
+
+
  // Assign this in the Inspector
 
-void reciveAllmessage(OscMessage message)
+    void reciveAllmessage(OscMessage message)
 {
     string address = message.address.TrimStart('/');
 
@@ -43,46 +75,57 @@ void reciveAllmessage(OscMessage message)
     {
         case "radio-onoff":
             int radioOnOff = Convert.ToInt32(value);
-            logText = $"Radio On/Off: {radioOnOff}";
+            logText = $"Radio On/Off: {radioOnOff}"; //toggle
 
-
-                radioModule.setOnof(radioOnOff);
+            if(radioOnOff==1)
+                radioModule.setOnof();
             break;
 
         case "radio-tuner":
-            float radioTuner = Convert.ToSingle(value);
+            int radioTuner = Convert.ToInt32(value);
             logText = $"Radio Tuner: {radioTuner}";
-            //radioModule.changeChannel(radioTuner);
+            if( radioTuner!=0) 
+            radioModule.changeChannel(radioTuner);
             break;
 
         case "radio-volume":
-            float radioVolume = Convert.ToSingle(value);
+            int radioVolume = Convert.ToInt32(value);
             logText = $"Radio Volume: {radioVolume}";
-           // radioModule.setOnof(radioVolume);
+             if(radioVolume!=0)
+             radioModule.changeVol(radioVolume);
 
             break;
 
         case "ac-increase":
-            int acIncrease = Convert.ToInt32(value);
+            int acIncrease = Convert.ToInt32(value); //trigger
             logText = $"AC Increase: {acIncrease}";
-            airconditionModule.changeTemp(acIncrease);
+            if(acIncrease==1)
+            airconditionModule.changeTemp(1);
             break;
 
         case "ac-decrease":
-            int acDecrease = Convert.ToInt32(value);
+            int acDecrease = Convert.ToInt32(value); //trigger
             logText = $"AC Decrease: {acDecrease}";
-             airconditionModule.changeTemp(acDecrease);
+            if(acDecrease==1)
+             airconditionModule.changeTemp(-1);
             break;
 
         case "ac-fan":
-            float acFan = Convert.ToSingle(value);
+            int acFan = Convert.ToInt32(value);
             logText = $"AC Fan Speed: {acFan}";
-              //  airconditionModule.changeWind(acFan);
+            if(acFan!=0) 
+            airconditionModule.changeWind(acFan);
             break;
 
         case "gear-start":
             int gearStart = Convert.ToInt32(value);
             logText = $"Gear Start: {gearStart}";
+            if(gearStart!=0)
+                gearControlModule.startengine(gearStart);
+                airconditionModule.SetOnoff(gearStart);
+                if (gearStart == -1)
+                    radioModule.onof = false;
+
             break;
 
         case "gear-stick":

@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 public class AirconditionModule : MonoBehaviour
 {
-   float Tempture = 30.7f;
+   float Tempture = 50f;
    public float Winds = 1f;  
     public bool onof;
 
@@ -23,31 +23,31 @@ public class AirconditionModule : MonoBehaviour
     {
 
 
-        if (value == 0) { onof = false; }
+        if (value == -1) { onof = false; }
 
         else if (value == 1) { onof = true; }   
     }
 
 public void changeWind(int direction)
 {
-    float step = 0.1f;
+    float step = 0.05f; // smaller step for smoother wind change
 
-    Winds += direction > 0 ? step : -step;
+    // Increase or decrease volume
+    Winds += (direction > 0) ? step : -step;
     Winds = Mathf.Clamp01(Winds);
 
-    audioSource.volume = Winds;
-
-    WindsText.text = "Vol: " + Mathf.RoundToInt(Winds * 20);
+    // Display as 0–20 instead of 0–1
+    
 }
-    public void changeTemp(int drection)
+public void changeTemp(int drection)
     {
-         if (!onof) return;
+        
         if (drection > 0)
         {
 
-            Tempture += 0.01f;
+            Tempture -= 1f;
 
-            if (Tempture > 200) Tempture  = 0.0f;
+             if (Tempture > 80) Tempture  = 80f;
 
            
 
@@ -56,9 +56,9 @@ public void changeWind(int direction)
         else
         {
 
-            Tempture -= 0.01f;
+            Tempture += 1f;
 
-            if (Tempture <= 0) Tempture  = 200.0f;
+             if (Tempture <= 65) Tempture  = 65.0f;
 
             
 
@@ -106,20 +106,54 @@ public void changeWind(int direction)
     void Update()
     {
 
-      
+        if (onof)
+        {
+
 
             DisplayText.text = "TEMP " + Tempture.ToString();
-            WindsText.text = "WIND " + Mathf.RoundToInt(Winds * 100);
+            // WindsText.text = "WIND " + Mathf.RoundToInt(Winds * 100);
+
+
+
+
+
+            // Apply to AudioSource
+            // audioSource.volume = Winds;
+            WindsText.text = "Wind: " + Mathf.RoundToInt(Winds * 20);
+
+
+
+        }
+        else
+        {
+
+            DisplayText.text = "";
+            // WindsText.text = "WIND " + Mathf.RoundToInt(Winds * 100);
+
+
+
+
+
+            // Apply to AudioSource
+            // audioSource.volume = Winds;
+            WindsText.text = "";
+
+
+
+        }
+
+
+
 
             // audioSource.Play();
 
 
 
 
-      
 
 
 
-        
+
+
     }
 }

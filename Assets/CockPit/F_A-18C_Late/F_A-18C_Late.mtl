@@ -1,0 +1,169 @@
+newmtl a133a557-e0e9-4e67-be88-5c0f3ca02e76
+Kd 1.000 1.000 1.000
+Ks 0.000 0.000 0.000
+Ns 30
+Ke 0.000 0.000 0.000
+map_Kd textures/fa_18c_late_c.jpg
+map_Ks textures/fa_18c_late_n_s.jpg
+map_normal textures/fa_18c_late_n_n.jpg
+map_ao textures/fa_18c_late_n_ao.jpg
+
+newmtl a95576dc-8282-44be-a65c-f75109b9e86b
+Kd 0.000 0.000 0.000
+Ks 1.000 1.000 1.000
+Ns 255
+Ke 0.000 0.000 0.000
+d 0.17
+
+newmtl 105f501d-1456-4b64-b9fb-41a53a6b1d5c
+Kd 1.000 1.000 1.000
+Ks 0.000 0.000 0.000
+Ns 30
+Ke 0.000 0.000 0.000
+map_Kd textures/us_aim_120b_missile_c.jpg
+map_Ks textures/us_aim_120_missile_n_s.jpg
+map_normal textures/us_aim_120_missile_n_n.jpg
+map_ao textures/us_aim_120_missile_n_ao.jpg
+
+newmtl aabe0ddd-e820-47bd-ba98-a83dc36d2c61
+Kd 1.000 1.000 1.000
+Ks 0.502 0.502 0.502
+Ns 30
+Ke 0.000 0.000 0.000
+map_Kd textures/fa_18_reflective_c.jpg
+
+newmtl 543aacd8-6f5a-44be-ba3a-bd1b1373142c
+Kd 1.000 1.000 1.000
+Ks 0.000 0.000 0.000
+Ns 30
+Ke 0.000 0.000 0.000
+map_Kd textures/fa_18_inside_c.jpg
+map_Ks textures/fa_18_inside_n_s.jpg
+map_normal textures/fa_18_inside_n_n.jpg
+map_ao textures/fa_18_inside_n_ao.jpg
+
+newmtl 19624458-c4bc-458f-950e-999c0e4e4c14
+Kd 0.000 0.000 0.000
+Ks 1.000 1.000 1.000
+Ns 255
+Ke 0.000 0.000 0.000
+d 0.75
+
+newmtl e319868e-ff2e-484f-bc0f-5a3fc395f092
+Kd 1.000 1.000 1.000
+Ks 0.000 0.000 0.000
+Ns 30
+Ke 0.000 0.000 0.000
+map_Kd textures/lau_7ba_launcher_c.jpg
+map_Ks textures/lau_7ba_launcher_n_s.jpg
+map_normal textures/lau_7ba_launcher_n_n.jpg
+map_ao textures/lau_7ba_launcher_n_ao.jpg
+
+newmtl f4e9317f-23e2-44a9-9aba-329b8f268175
+Kd 1.000 1.000 1.000
+Ks 0.000 0.000 0.000
+Ns 30
+Ke 0.000 0.000 0.000
+map_Kd textures/us_aim_9m_sidewinder_c.jpg
+map_Ks textures/us_aim_9m_sidewinder_n_s.jpg
+map_normal textures/us_aim_9m_sidewinder_n_n.jpg
+map_ao textures/us_aim_9m_sidewinder_n_ao.jpg
+
+newmtl cc8af664-1a60-40a5-9e3c-12ae739765b1
+Kd 0.000 0.000 0.000
+Ks 0.000 0.000 0.000
+Ns 255
+Ke 0.000 0.000 0.000
+d 0.95
+
+newmtl 8d9b66fd-cfb6-4efe-8463-68e15331d0b5
+Kd 0.000 0.000 0.000
+Ks 1.000 1.000 1.000
+Ns 255
+Ke 0.000 0.000 0.000
+d 0.75
+
+newmtl fa3100be-84bd-4c4d-9aa3-237e6414f401
+Kd 1.000 1.000 1.000
+Ks 0.000 0.000 0.000
+Ns 30
+Ke 0.000 0.000 0.000
+map_Kd textures/fa_18c_late_interior_c.jpg
+map_Ks textures/fa_18c_late_interior_n_s.jpg
+map_normal textures/fa_18c_late_interior_n_n.jpg
+map_ao textures/fa_18c_late_interior_n_ao.jpg
+
+newmtl 1cd4c537-e67d-4d37-9306-b54a4b43c1db
+Kd 1.000 1.000 1.000
+Ks 0.000 0.000 0.000
+Ns 30
+Ke 0.000 0.000 0.000
+map_Kd textures/fa_18c_central_pylon_c.jpg
+map_Ks textures/fa_18c_central_pylon_n_s.jpg
+map_normal textures/fa_18c_central_pylon_n_n.jpg
+map_ao textures/fa_18c_central_pylon_n_ao.jpg
+
+newmtl f88702e6-35ac-45b3-9cc9-77db0d84706f
+Kd 1.000 1.000 1.000
+Ks 0.000 0.000 0.000
+Ns 30
+Ke 0.000 0.000 0.000
+map_Kd textures/bru32a_adapter_c.jpg
+map_Ks textures/bru32a_adapter_n_s.jpg
+map_normal textures/bru32a_adapter_n_n.jpg
+map_ao textures/bru32a_adapter_n_ao.jpg
+
+newmtl 035000f8-617b-46d4-9a0b-3aa1733989cf
+Kd 1.000 1.000 1.000
+Ks 0.000 0.000 0.000
+Ns 30
+Ke 0.000 0.000 0.000
+map_Kd textures/fa_18_wing_pylons_c.jpg
+map_Ks textures/fa_18_wing_pylons_n_s.jpg
+map_normal textures/fa_18_wing_pylons_n_n.jpg
+map_ao textures/fa_18_wing_pylons_n_ao.jpg
+
+newmtl 51547abd-1235-4adf-bcdd-b9bc7db3eddc
+Kd 1.000 1.000 1.000
+Ks 0.000 0.000 0.000
+Ns 30
+Ke 0.000 0.000 0.000
+map_Kd textures/martin_baker_sju_17_seat_c.jpg
+map_Ks textures/martin_baker_sju_17_seat_n_s.jpg
+map_normal textures/martin_baker_sju_17_seat_n_n.jpg
+map_ao textures/martin_baker_sju_17_seat_n_ao.jpg
+
+newmtl 6fb9bd73-04fe-45ea-8742-fbfd01b47917
+Kd 1.000 1.000 1.000
+Ks 0.502 0.502 0.502
+Ns 30
+Ke 0.000 0.000 0.000
+map_Kd textures/radio_net_c.jpg
+map_Ks textures/radio_net_n_s.jpg
+map_normal textures/radio_net_n_n.jpg
+map_ao textures/radio_net_n_ao.jpg
+map_d textures/radio_net_c_a.png
+
+newmtl aca4d4fc-c245-474f-bfef-f30c23cb8ed2
+Kd 1.000 1.000 1.000
+Ks 0.000 0.000 0.000
+Ns 30
+Ke 0.000 0.000 0.000
+map_Kd textures/us_330gal_fa_18_drop_tank_c.jpg
+map_Ks textures/us_330gal_fa_18_drop_tank_n_s.jpg
+map_normal textures/us_330gal_fa_18_drop_tank_n_n.jpg
+map_ao textures/us_330gal_fa_18_drop_tank_n_ao.jpg
+
+newmtl 59b045a2-9023-4bdd-a929-55cac8a3e7f3
+Kd 1.000 0.000 1.000
+Ks 0.067 0.067 0.067
+Ns 30
+Ke 0.000 0.000 0.000
+
+newmtl cda849f3-cce7-4792-a770-be72a22fc031
+Kd 0.000 0.000 0.000
+Ks 1.000 1.000 1.000
+Ns 255
+Ke 0.000 0.000 0.000
+d 0.75
+

@@ -18,6 +18,10 @@ public class RadioModule : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+
+        //if(onof)audioSource.Play();
+        
         
     }
 
@@ -25,96 +29,165 @@ public class RadioModule : MonoBehaviour
     {
 
 
-        if (value == 0) { onof = false; }
+        if (value == 0)
+        {
+            onof = false;
+            audioSource.Pause();
 
-        else if (value == 1) { onof = true; }   
+        }
+
+        else if (value == 1)
+        {
+            onof = true;
+             audioSource.Play();
+
+        }   
     }
 
-public void changeVol(int direction)
+    public void changeVol(int direction)
+    {
+        float step = 0.1f;
+
+        Volume += direction > 0 ? step : -step;
+        Volume = Mathf.Clamp01(Volume);
+
+        audioSource.volume = Volume;
+
+        VolumeText.text = "Vol: " + Mathf.RoundToInt(Volume * 100);
+    }
+
+
+    public AudioClip[] radioClips;  
+
+
+     private int currentClipIndex = 0;
+
+public void changeChannel(int direction)
 {
-    float step = 0.1f;
+    if (!onof || radioClips.Length == 0) return;
 
-    Volume += direction > 0 ? step : -step;
-    Volume = Mathf.Clamp01(Volume);
+    // Simulate tuning the dial
+    currentChannel += direction > 0 ? 0.1f : -0.1f;
 
-    audioSource.volume = Volume;
+    if (currentChannel > 197.9f) currentChannel = 0f;
+    if (currentChannel < 0f) currentChannel = 197.9f;
 
-    VolumeText.text = "Vol: " + Mathf.RoundToInt(Volume * 100);
+    // Choose a random clip
+    int randomIndex = UnityEngine.Random.Range(0, radioClips.Length);
+
+    // Play it
+    PlayRadioClip(randomIndex);
+
+    // Update display
+    DisplayText.text = "FM " + currentChannel.ToString("F1");
 }
-    public void changeChannel(int drection)
+
+
+
+    void PlayRadioClip(int index)
+{
+    if (radioClips == null || index < 0 || index >= radioClips.Length)
     {
-         if (!onof) return;
-        if (drection > 0)
-        {
+        Debug.LogWarning("Invalid radio clip index.");
+        return;
+    }
 
-            currentChannel += 0.01f;
+    audioSource.Stop();
+    audioSource.clip = radioClips[index];
+    audioSource.Play();
 
-            if (currentChannel > 200) currentChannel = currentChannel = 0.0f;
+    Debug.Log($"Switched to clip {index}, FM {currentChannel:F1}");
+}
 
-            JumpToRandomPoint();
 
 
-        }
-        else
-        {
 
-            currentChannel -= 0.01f;
-
-            if (currentChannel <= 0) currentChannel = currentChannel = 200.0f;
-
-            JumpToRandomPoint();
+    
 
 
 
 
 
 
-        }
+
+
+
+    //     public void changeChannel(int drection)
+    //     {
+    //          if (!onof) return;
+    //         if (drection > 0)
+    //         {
+
+    //             currentChannel += 0.1f;
+
+    //             if (currentChannel >= 197.9f) currentChannel = currentChannel = 0.0f;
+
+    //             JumpToRandomPoint();
+
+
+    //         }
+    //         else
+    //         {
+
+    //             currentChannel -= 0.1f;
+
+    //             if (currentChannel <= 0) currentChannel = currentChannel = 197.9f;
+
+    //             JumpToRandomPoint();
+
+
+
+
+
+
+    //         }
+
+
+
+
+    //     }
+
+
+    //     public float jumpCooldown = 2f; // Prevent rapid jumps
+
+    //     private float lastJumpTime = 0f;
+
+    //     public void JumpToRandomPoint()
+    //     {
+    //         if (audioSource == null || audioSource.clip == null)
+    //         {
+    //             Debug.LogWarning("AudioSource or clip not assigned.");
+    //             return;
+    //         }
+
+    //         if (!audioSource.isPlaying)
+    //             audioSource.Play();
+
+    //         if (Time.time - lastJumpTime < jumpCooldown)
+    //             return;
+
+    //         float clipLength = audioSource.clip.length;
+    //         float randomTime = UnityEngine.Random.Range(0f, clipLength);
+    //         audioSource.time = randomTime;
+
+    //         Debug.Log($"Jumped to {randomTime:F2} sec");
+    //         lastJumpTime = Time.time;
+    //     }
+
+
+    public void setOnof()
+    {
+
+        onof = !onof;
+
+        // if (on == 0) onof = false;
+
+        // else if (on == 1) onof = true;
 
 
 
 
     }
-
-
-    public float jumpCooldown = 2f; // Prevent rapid jumps
-
-    private float lastJumpTime = 0f;
-
-    public void JumpToRandomPoint()
-    {
-        if (audioSource == null || audioSource.clip == null)
-        {
-            Debug.LogWarning("AudioSource or clip not assigned.");
-            return;
-        }
-
-        if (!audioSource.isPlaying)
-            audioSource.Play();
-
-        if (Time.time - lastJumpTime < jumpCooldown)
-            return;
-
-        float clipLength = audioSource.clip.length;
-        float randomTime = UnityEngine.Random.Range(0f, clipLength);
-        audioSource.time = randomTime;
-
-        Debug.Log($"Jumped to {randomTime:F2} sec");
-        lastJumpTime = Time.time;
-    }
-
-
-    public void setOnof(int on)
-    {
-
-        if (on == 0) onof = false;
-
-        else if(on== 1) onof = true;
-        
-
-
-
-     }
 
 
     // Update is called once per frame
@@ -124,9 +197,11 @@ public void changeVol(int direction)
         if (onof)
         {
 
-            DisplayText.text = "FM " + currentChannel.ToString();
+            DisplayText.text = "FM " + currentChannel.ToString("F1");
             VolumeText.text = "Vol: " + Mathf.RoundToInt(Volume * 100);
 
+            //audioSource.Play();
+            if (!audioSource.isPlaying)
             audioSource.Play();
 
 
@@ -140,7 +215,12 @@ public void changeVol(int direction)
             DisplayText.text = "";
             VolumeText.text = "";
 
-             audioSource.Stop();
+
+
+        if (audioSource.isPlaying)
+           
+
+            audioSource.Pause();
 
 
 

@@ -33,7 +33,7 @@ public void startengine(int start)
     {
             startEngine = true;
         // Play the start sound once
-            AudioSource.PlayClipAtPoint(StartEngine, transform.position);
+            EngineSound.PlayOneShot(StartEngine);
 
         // Optionally, start looping engine sound
         if (!EngineSound.isPlaying)
@@ -42,7 +42,7 @@ public void startengine(int start)
             EngineSound.Play();
         }
     }
-    else if (start == 0)
+    else if (start == -1)
     {
            startEngine = false;
         // Stop looping engine sound
@@ -50,9 +50,13 @@ public void startengine(int start)
             {
                 EngineSound.Stop();
             }
+            
+
+
+            EngineSound.PlayOneShot(StopEngine);
 
         // Play the stop sound once
-        AudioSource.PlayClipAtPoint(StopEngine, transform.position);
+          //  AudioSource.PlayClipAtPoint(StopEngine, transform.position);
     }
 }
 
