@@ -51,6 +51,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "MRBeholderOverLay.sln",
+    "dotnet.defaultSolution": "MRBeholderOverlay.sln",
     "dotnet.preferCSharpExtension": true
 }

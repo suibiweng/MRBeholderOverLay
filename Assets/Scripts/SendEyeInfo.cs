@@ -6,6 +6,8 @@ public class SendEyeInfo : MonoBehaviour
 {
     public OSC osc;
     public TrailRenderer line;
+
+    public string hitObject="Null";
     // Start is called before the first frame update
     void Start()
     {
@@ -15,22 +17,24 @@ public class SendEyeInfo : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+void Update()
+{
+    OscMessage message = new OscMessage();
+    message.address = "/eyetrack";
 
+    // Add position data
+    message.values.Add(transform.position.x);
+    message.values.Add(transform.position.y);
+    message.values.Add(transform.position.z);
 
-        OscMessage message = new OscMessage();
+    // Add hit object name (ensure you assign hitObject elsewhere in your raycast)
+    message.values.Add(hitObject);
 
-        message = new OscMessage();
-        message.address = "/eyetrack";
-        message.values.Add(transform.position.x);
-        message.values.Add(transform.position.y);
-        message.values.Add(transform.position.z);
-        osc.Send(message);
+    // Add timestamp (time in seconds since the scene started)
+    message.values.Add(Time.time);
 
-        
-
-    }
+    osc.Send(message);
+}
 
 
     public void StartToDraw()

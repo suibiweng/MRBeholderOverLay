@@ -96,6 +96,15 @@ public class EyeTrackRay : MonoBehaviour
         if (Physics.Raycast(transform.position, rayCastDirection, out hit, Mathf.Infinity, layersInclude))
         {
 
+
+            string hitobj= hit.transform.gameObject.name;
+            if (Tracker != null)
+            {
+                Tracker.GetOrAddComponent<SendEyeInfo>().hitObject = hitobj;
+                
+
+            }
+
             Tracker.transform.position = hit.point;
             //UnSelect();
             lineRenderer.startColor = rayColorHoverState;
